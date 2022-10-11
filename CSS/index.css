@@ -7,13 +7,13 @@
 
 @font-face {
     font-family: 'Fjord-One';
-    src: url('');
+    src: url('../Fonts/FjordOne/FjordOne-Regular.ttf');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Maven-Pro';
-    src: url('');
+    src: url('../Fonts/MavenPro/MavenPro-Regular.ttf');
     font-weight: 400;
 }
 
@@ -22,12 +22,12 @@ body {
 }
 
 h1 {
-    font-size: 24px;
     padding: 0;
     margin: 12px 0px;
     text-align: center;
     display: block;
-    font-family: Alegreya;
+    font-family: 'Alegreya', Fallback, sans-serif;
+    font-size: 36px;
 }
 
 nav {
@@ -53,9 +53,10 @@ nav a {
     cursor: pointer;
     text-decoration: none;
     color: black;
+    font-family: 'Fjord-One', Fallback, sans-serif;
 }
 
 nav button:hover {
     background-color: black;
     color: white;
-}
+} 
