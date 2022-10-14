@@ -4,7 +4,8 @@ const productsDiv = document.querySelector(".products");
 let objects = [
     {name: "Minigun", image: "../IMG/StoreMinigun.png", altText: "Image of Minigun", price: 50, id: 1},
     {name: "Shotgun", image: "../IMG/StoreShotgun.png", altText: "Image of Shotgun", price: 100, id: 2},
-    {name: "Scattergun", image: "../IMG/StoreScattergun.png", altText: "Image of Scattergun", price: 150, id: 3}
+    {name: "Scattergun", image: "../IMG/StoreScattergun.png", altText: "Image of Scattergun", price: 150, id: 3},
+    {name: "Frag Grenade", image: "../IMG/StoreFrag.png", altText: "Image of Frag Grenade", price: 200, id: 4}
 ];
 
 const createSlots = function(objs, div) {
@@ -53,7 +54,6 @@ const loadItems = function(slots, objs) {
         const nameTxt = slot.querySelector(".name");
         const image = slot.querySelector(".image");
         const priceTxt = slot.querySelector(".price");
-        console.log(nameTxt);
         nameTxt.textContent = obj.name;
         image.src = obj.image;
         image.setAttribute("alt", obj.altText);
