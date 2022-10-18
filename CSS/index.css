@@ -17,13 +17,21 @@
     font-weight: 400;
 }
 
+::selection {
+    background-color: none;
+}
+
 h1 {
     padding: 0;
-    margin: 12px 0px;
+    margin: 12px auto;
     text-align: center;
     display: block;
     font-family: 'Alegreya', Fallback, sans-serif;
     font-size: 36px;
+    position: relative;
+    bottom: 85px;
+    z-index: 1000 !important;
+    max-width: 400px;
 }
 
 h2 {
@@ -32,6 +40,7 @@ h2 {
     display: inline-block;
     font-family: "MavenPro";
     font-size: 1.6rem;
+    font-size: 28px;
 }
 
 p {
@@ -47,14 +56,87 @@ body {
     z-index: 1;
 }
 
-div.logo {
-    margin: 12px auto;
+.d-none {
+    display: none;
+}
+
+div.products {
+    display: inline-block;
+    color: black;
+    z-index: 10;
+    position: relative;
+    padding: 24px;
+    z-index: 5;
+    margin: 0rem auto;
     text-align: center;
 }
 
-img.logo {
-    width: 70%;
-    max-width: 800px;
+div.itemSlot {
+    width: 200px;
+    background-color: #ddd;
+    display: inline-block;
+    padding: 10px 50px;
+    margin: 25px;
+    text-align: center;
+    border: solid 4px black;
+    border-radius: 16px;
+    height: 386px
+    top 0;
+}
+
+div.itemSlot img {
+    height: 150px;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div.itemSlot img:hover {
+    background-color: white;
+}
+
+div.itemSlot #name:hover {
+    /*Bakgrunn gradient */
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+div.bigItemSlot {
+    width: 200px;
+    background-color: #ddd;
+    display: inline-block;
+    padding: 10px 50px;
+    margin: 25px;
+    text-align: center;
+    border: solid 4px black;
+    border-radius: 16px;
+    height: 386px
+    top 0;
+}
+
+div.bigItemSlot img {
+    height: 150px;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+div.bigItemSlot img:hover {
+    background-color: white;
+}
+
+div.bigItemSlot #name:hover {
+    /*Bakgrunn gradient */
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 nav {
@@ -63,6 +145,8 @@ nav {
     width: 100%;
     margin-left: 0;
     position: fixed;
+    top: 0;
+    z-index: 10;
 }
 
 .currentSite {

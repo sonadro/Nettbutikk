@@ -12,16 +12,10 @@
     <link rel="stylesheet" href="../CSS/reset.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/login.css">
-    <script src="../JS/login.js"></script>
+    <script src="../JS/login.js" defer></script>
 
 </head>
 <body>
-
-    <header>
-
-        <h1>Sondres Nettbutikk</h1>
-
-    </header>
     
     <nav>
 
@@ -29,18 +23,23 @@
         <a href="login.html" class="currentSite">Logg Inn</a>
         <a href="produkter.html">Produkter</a>
         <a href="handlekurv.html">Handlekurv</a>
-        <a href="kontakt.html">Kontakt</a>
 
-    </nav>
+    </nav><br><br><br><br><br>
+
+    <header>
+
+        <h1>Sondres Nettbutikk</h1>
+
+    </header>
 
     <div class="login">
 
-        <h2>Logg inn</h2>
+        <h2 class="h2">Logg inn</h2>
         <form class="loginForm">
 
             <div class="inputField">
                 <label for="brukernavn">Brukernavn:</label>
-                <input type="text" placeholder="Brukernavn" name="brukernavn">
+                <input class="brukernavn" type="text" placeholder="Brukernavn" name="brukernavn">
             </div><br>
 
             <div class="inputField">
@@ -53,7 +52,7 @@
                 <p class="letterErr pwErr">Passordet må inneholde minst én bokstav</p>
                 <p class="numberErr pwErr">Passordet må inneholde minst ett tall</p>
                 <p class="symbolErr pwErr">Passordet må inneholde minst ett symbol</p>
-                <p class="lengthErr pwErr">Passordet må inneholde mellom 6 og 50 tegn</p>
+                <p class="lengthErr pwErr bottomErr">Passordet må inneholde mellom 6 og 50 tegn</p>
             </div>
 
         </form>
