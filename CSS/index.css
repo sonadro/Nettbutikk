@@ -17,7 +17,7 @@
     font-weight: 400;
 }
 
-::selection {
+nav::selection {
     background-color: none;
 }
 
@@ -32,6 +32,20 @@ h1 {
     bottom: 85px;
     z-index: 1000 !important;
     max-width: 400px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 305px;
+}
+
+header h1 {
+    position: fixed;
+    top: 20px;
+    height: 50px;
+    margin: 0;
 }
 
 h2 {
@@ -67,7 +81,7 @@ div.products {
     position: relative;
     padding: 24px;
     z-index: 5;
-    margin: 0rem auto;
+    margin: 0S auto;
     text-align: center;
 }
 
@@ -80,15 +94,19 @@ div.itemSlot {
     text-align: center;
     border: solid 4px black;
     border-radius: 16px;
-    height: 386px
-    top 0;
+    height: 386px;
+    top: 0;
+}
+
+.rocket_launcher {
+    max-height: 110px;
 }
 
 div.itemSlot img {
     height: 150px;
-    cursor: pointer;
     border-radius: 16px;
     padding: 8px;
+    cursor: pointer;
 }
 
 div.itemSlot img:hover {
@@ -96,40 +114,6 @@ div.itemSlot img:hover {
 }
 
 div.itemSlot #name:hover {
-    /*Bakgrunn gradient */
-    border-radius: 12px;
-    background-color: white;
-    color: black;
-    text-decoration: underline;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-div.bigItemSlot {
-    width: 200px;
-    background-color: #ddd;
-    display: inline-block;
-    padding: 10px 50px;
-    margin: 25px;
-    text-align: center;
-    border: solid 4px black;
-    border-radius: 16px;
-    height: 386px
-    top 0;
-}
-
-div.bigItemSlot img {
-    height: 150px;
-    cursor: pointer;
-    border-radius: 16px;
-    padding: 8px;
-}
-
-div.bigItemSlot img:hover {
-    background-color: white;
-}
-
-div.bigItemSlot #name:hover {
     /*Bakgrunn gradient */
     border-radius: 12px;
     background-color: white;

@@ -32,21 +32,47 @@ div.login label {
     right: 0px;
 }
 
+.mailInput {
+    width: 250px;
+}
+
 .passord {
+    width: 250px;
     position: relative;
-    left: 28px;
+    left: 32px;
+}
+
+.mailErr {
+    font-size: 18px;
 }
 
 .pwErr {
     color: red;
+    font-size: 18px;
 }
 
 .pwValid {
     color: #11ff11;
+    font-size: 18px;
 }
 
 .bottomErr {
     padding-bottom: 8px;
+}
+
+.submit {
+    padding: 12px;
+    border: 4px solid black;
+    border-radius: 12px;
+    margin: 12px;
+    margin-bottom: 32px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit:hover {
+    color: white;
+    background-color: black;
 }
 
 .d-none {

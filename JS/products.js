@@ -1,27 +1,31 @@
 const productsDiv = document.querySelector(".products");
-const productSlots = Array.from(productsDiv.children);
 
-let objects = [
-    {name: "Minigun ", imgClass: "minigun", image: "../IMG/StoreMinigun.png", altText: "Image of Minigun", price: 50, id: 1},
-    {name: "Shotgun ", imgClass: "shotgun", image: "../IMG/StoreShotgun.png", altText: "Image of Shotgun", price: 100, id: 2},
-    {name: "Scattergun ", imgClass: "scattergun", image: "../IMG/StoreScattergun.png", altText: "Image of Scattergun", price: 150, id: 3},
-    {name: "Frag Grenade", imgClass: "frag_grenade", image: "../IMG/StoreFrag.png", altText: "Image of Frag Grenade", price: 200, id: 4}
-];
+const getFile = async (resource) => {
+    const response = await fetch(resource);
 
-const createSlots = function(objs, div) {
-    for (i = 0; i < objs.length; i++) {
+    if (response.status !== 200) {
+        throw new Error('Cannot fetch the data, error code', response.status);
+    }
+
+    const data = await response.json();
+
+    return data;
+}
+
+const createSlots = function(length, div) {
+    for (i = 0; i < length; i++) {
         div.innerHTML += `
         <div class="itemSlot">
-            <p class="name">Name</p>
-            <img src="../IMG/StoreMinigun.png" alt="Image of Minigun" class="image">
-            <p class="price">Price</p>
+            <p class="name" id="name">Laster navn</p>
+            <img src="../IMG/Placeholder.jpg" alt="Laster bilde" class="image">
+            <p class="price">Laster pris</p>
         </div>
         `;
     }
 }
 
 // Randomise IDS
-const randomiseIds = function() {
+const randomiseIds = function(objects) {
     // Generates array of ids
     const generateIDs = function() {
         let arr = [];
@@ -62,22 +66,45 @@ const loadItems = function(slots, objs) {
         nameTxt.textContent = obj.name;
         image.src = obj.image;
         image.setAttribute("alt", obj.altText);
-        image.classList.add(`${obj.imgClass}`);
-        nameTxt.classList.add(`${obj.imgClass}`);
+        image.classList.add(`${obj.class}`);
+        nameTxt.classList.add(`${obj.class}`);
         image.classList.remove("loading");
         priceTxt.textContent = `$ ${obj.price}`;
     }
 }
 
-// sjekk et produkt
-productsDiv.addEventListener("click", e => {
-    let itemClass = Array.from(e.target.classList);
-    itemClass = itemClass[0];
-    console.log(itemClass);
-});
+// Hvis products.html
+if (productsDiv !== null) {
+    let testObject;
+    const checkObjects = function(objs, filter) {
+        objs.forEach(obj => {
+            if (obj.class === filter) {
+                testObject = obj;
+            }
+        });
+    }
+    // sjekk et produkt
+    const cartProducts = [];
+    productsDiv.addEventListener("click", e => {
+        let itemClass = Array.from(e.target.classList);
+        itemClass = itemClass[1];
+        checkObjects(objects, itemClass);
+        console.log(testObject);
+    });
 
-// createSlots(objs, productsDiv);
 
-randomiseIds();
-
-loadItems(productSlots, objects);
+    // Fetch and load data
+    let objects = [];
+    getFile('../products.json')
+        .then(data => {
+            createSlots(data.length, productsDiv);
+            const productSlots = productsDiv.children;
+            randomiseIds(data);
+            loadItems(productSlots, data);
+            objects = data;
+        })
+        .catch(err => console.warn('Rejected:', err.message));
+    //
+} else {
+    console.log('Handlekurv.html');
+}

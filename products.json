@@ -1,0 +1,109 @@
+[
+    {"name": "Minigun",
+        "class": "minigun",
+        "image": "../IMG/StoreMinigun.png",
+        "altText": "Image of Minigun",
+        "price": 50,
+        "sales": 100,
+        "id": 1
+    },
+
+    {"name": "Shotgun",
+        "class": "shotgun",
+        "image": "../IMG/StoreShotgun.png",
+        "altText": "Image of Shotgun",
+        "price": 100,
+        "sales": 99,
+        "id": 2
+    },
+
+    {"name": "Scattergun",
+        "class": "scattergun",
+        "image": "../IMG/StoreScattergun.png",
+        "altText": "Image of Scattergun",
+        "price": 150,
+        "sales": 98,
+        "id": 3
+    },
+
+    {"name": "Frag Grenade",
+        "class": "frag_grenade",
+        "image": "../IMG/StoreFrag.png",
+        "altText": "Image of Frag Grenade",
+        "price": 200,
+        "sales": 97,
+        "id": 4
+    },
+
+    {"name": "Bat",
+        "class": "bat",
+        "image": "../IMG/StoreBat.png",
+        "altText": "Image of bat",
+        "price": 100,
+        "sales": 96,
+        "id": 5
+    },
+
+    {"name": "Fireaxe",
+        "class": "fireaxe",
+        "image": "../IMG/StoreFireaxe.png",
+        "altText": "Image of fireaxe",
+        "price": 100,
+        "sales": 95,
+        "id": 6
+    },
+
+    {"name": "Medigun",
+        "class": "medigun",
+        "image": "../IMG/StoreMedigun.png",
+        "altText": "Image of medigun",
+        "price": 100,
+        "sales": 94,
+        "id": 7
+    },
+
+    {"name": "Rainblower",
+        "class": "rainblower",
+        "image": "../IMG/StoreRainblower.png",
+        "altText": "Image of rainblower",
+        "price": 100,
+        "sales": 93,
+        "id": 8
+    },
+
+    {"name": "Revolver",
+        "class": "revolver",
+        "image": "../IMG/StoreRevolver.png",
+        "altText": "Image of revolver",
+        "price": 100,
+        "sales": 92,
+        "id": 9
+    },
+
+    {"name": "Rocket Launcher",
+        "class": "rocket_launcher",
+        "image": "../IMG/StoreRocketLauncher.png",
+        "altText": "Image of rocket launcher",
+        "price": 69420,
+        "sales": 91,
+        "id": 10
+    },
+
+    {"name": "SMG",
+        "class": "smg",
+        "image": "../IMG/StoreSMG.png",
+        "altText": "Image of SMG",
+        "price": 100,
+        "sales": 90,
+        "id": 11
+    },
+
+    {"name": "Syringe Gun",
+        "class": "syringe_gun",
+        "image": "../IMG/StoreSyringeGun.png",
+        "altText": "Image of syringe gun",
+        "price": 100,
+        "sales": 89,
+        "id": 12
+    }
+]

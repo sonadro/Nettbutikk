@@ -16,6 +16,12 @@
 
 </head>
 <body>
+
+    <header>
+
+        <h1>Sondres Nettbutikk</h1>
+
+    </header>
     
     <nav>
 
@@ -24,13 +30,7 @@
         <a href="produkter.html">Produkter</a>
         <a href="handlekurv.html">Handlekurv</a>
 
-    </nav><br><br><br><br><br>
-
-    <header>
-
-        <h1>Sondres Nettbutikk</h1>
-
-    </header>
+    </nav><br><br><br><br><br><br>
 
     <div class="login">
 
@@ -38,25 +38,23 @@
         <form class="loginForm">
 
             <div class="inputField">
-                <label for="brukernavn">Brukernavn:</label>
-                <input class="brukernavn" type="text" placeholder="Brukernavn" name="brukernavn">
+                <label for="mailInput">Mailadresse:</label>
+                <input class="mailInput" type="text" placeholder="eksempel.mail@gmail.com" name="mailInput">
+                <p class="mailErr pwErr">Ugyldig mail</p>
             </div><br>
 
             <div class="inputField">
                 <label for="passord">Passord:</label>
                 <input class="passord" type="text" placeholder="Passord" name="passord">
             </div><br>
-            
-            <h3>Kriterier for passord:</h3>
+            <button class="submit d-none">Logg inn</button>
             <div class="errorMsg">
+                <h3>Kriterier for passord:</h3>
                 <p class="letterErr pwErr">Passordet må inneholde minst én bokstav</p>
                 <p class="numberErr pwErr">Passordet må inneholde minst ett tall</p>
                 <p class="symbolErr pwErr">Passordet må inneholde minst ett symbol</p>
-                <p class="lengthErr pwErr bottomErr">Passordet må inneholde mellom 6 og 50 tegn</p>
+                <p class="lengthErr pwErr bottomErr">Passordet må inneholde mellom 13 og 50 tegn</p>
             </div>
-
-            <button class="d-none">Submit</button>
-
         </form>
     </div>
 
