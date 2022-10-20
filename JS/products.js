@@ -75,21 +75,22 @@ const loadItems = function(slots, objs) {
 
 // Hvis products.html
 if (productsDiv !== null) {
-    let testObject;
+    let currentObject;
     const checkObjects = function(objs, filter) {
         objs.forEach(obj => {
             if (obj.class === filter) {
-                testObject = obj;
+                currentObject = obj;
             }
         });
     }
-    // sjekk et produkt
+
+    // Sjekk et produkt
     const cartProducts = [];
     productsDiv.addEventListener("click", e => {
         let itemClass = Array.from(e.target.classList);
         itemClass = itemClass[1];
         checkObjects(objects, itemClass);
-        console.log(testObject);
+        console.log(currentObject, itemClass);
     });
 
 
@@ -101,10 +102,10 @@ if (productsDiv !== null) {
             const productSlots = productsDiv.children;
             randomiseIds(data);
             loadItems(productSlots, data);
-            objects = data;
+            objects = data; // Need this for checking a product
         })
         .catch(err => console.warn('Rejected:', err.message));
     //
-} else {
+} else { // If in shopping cart
     console.log('Handlekurv.html');
 }

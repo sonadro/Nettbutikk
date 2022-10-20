@@ -66,22 +66,33 @@ const loadItems = function(slots, objs) {
         nameTxt.textContent = obj.name;
         image.src = obj.image;
         image.setAttribute("alt", obj.altText);
-        image.classList.add(`${obj.imgClass}`);
-        nameTxt.classList.add(`${obj.imgClass}`);
+        image.classList.add(`${obj.class}`);
+        nameTxt.classList.add(`${obj.class}`);
         image.classList.remove("loading");
         priceTxt.textContent = `$ ${obj.price}`;
     }
 }
 
 // sjekk et produkt
+let currentObject;
+const checkObjects = function(objs, filter) {
+    objs.forEach(obj => {
+        if (obj.class === filter) {
+            currentObject = obj;
+        }
+    });
+}
+
 productsDiv.addEventListener("click", e => {
     let itemClass = Array.from(e.target.classList);
-    itemClass = itemClass[0];
-    console.log(itemClass);
+    itemClass = itemClass[1];
+    checkObjects(objects, itemClass);
+    console.log(currentObject);
 });
 
 
 // Fetch and load data
+let objects = [];
 getFile('../products.json')
     .then(data => {
         const objs = data.splice(0, 8);
@@ -89,7 +100,7 @@ getFile('../products.json')
         const productSlots = productsDiv.children;
         randomiseIds(objs);
         loadItems(productSlots, objs);
-
+        objects = objs;
     })
     .catch(err => console.warn('Rejected:', err.message));
 //
