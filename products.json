@@ -14,7 +14,7 @@
         "image": "../IMG/StoreShotgun.png",
         "altText": "Bilde av Shotgun",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 9001,
         "sales": 99,
         "id": 2
     },
@@ -44,7 +44,7 @@
         "image": "../IMG/StoreBat.png",
         "altText": "Bilde av bat",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 500,
         "sales": 96,
         "id": 5
     },
@@ -54,7 +54,7 @@
         "image": "../IMG/StoreFireaxe.png",
         "altText": "Bilde av fireaxe",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 125,
         "sales": 95,
         "id": 6
     },
@@ -64,7 +64,7 @@
         "image": "../IMG/StoreMedigun.png",
         "altText": "Bilde av medigun",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 10,
         "sales": 94,
         "id": 7
     },
@@ -74,7 +74,7 @@
         "image": "../IMG/StoreRainblower.png",
         "altText": "Bilde av rainblower",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 1000,
         "sales": 93,
         "id": 8
     },
@@ -84,7 +84,7 @@
         "image": "../IMG/StoreRevolver.png",
         "altText": "Bilde av revolver",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 750,
         "sales": 92,
         "id": 9
     },
@@ -104,7 +104,7 @@
         "image": "../IMG/StoreSMG.png",
         "altText": "Bilde av SMG",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 42,
         "sales": 90,
         "id": 11
     },
@@ -114,7 +114,7 @@
         "image": "../IMG/StoreSyringeGun.png",
         "altText": "Bilde av syringe gun",
         "description": "Dette er deskriptiv tekst",
-        "price": 100,
+        "price": 3478,
         "sales": 89,
         "id": 12
     }
