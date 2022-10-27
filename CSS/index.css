@@ -71,7 +71,7 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 div.products {
@@ -131,6 +131,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 10;
+    border-bottom: 4px solid black;
 }
 
 .currentSite {

@@ -1,4 +1,7 @@
-const productsDiv = document.querySelector(".products");
+const productsDiv = document.querySelector('.products');
+const popupSlot = document.querySelector('.popupProduct');
+const addToCartBtn = document.querySelector('.addToCart');
+let itemSlots;
 
 const getFile = async (resource) => {
     const response = await fetch(resource);
@@ -16,36 +19,17 @@ const createSlots = function(length, div) {
     for (i = 0; i < length; i++) {
         div.innerHTML += `
         <div class="itemSlot">
-            <p class="name" id="name">Name</p>
-            <img src="../IMG/StoreMinigun.png" alt="Image of Minigun" class="image">
-            <p class="price">Price</p>
+            <p class="name" id="name">Laster navn</p>
+            <img src="../IMG/Placeholder.jpg" alt="Laster bilde" class="image">
+            <p class="price">Laster pris</p>
         </div>
         `;
     }
+    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
 }
 
-// Randomise IDS
-const randomiseIds = function(objects) {
-    // Generates array of ids
-    const generateIDs = function() {
-        let arr = [];
-        for (i = 1; i < objects.length + 1; i++) {
-            arr.push(i);
-        }
-        return arr;
-    }
-
-    // Assigns random ids to objects
-    const assignIDs = function(objs) {
-        let ids = generateIDs();
-        objs.forEach(obj => {
-            const rNum = Math.floor(Math.random() * ids.length);
-            obj.id = ids[rNum];
-            ids.splice(rNum, 1);
-        });
-    }
-    assignIDs(objects);
-
+// Sort by sales
+const sortBySales = function(objects) {
     // Re-sorts the objects, so they can be loaded in the new order
     objects.sort((a, b) => b.sales - a.sales);
 }
@@ -73,8 +57,67 @@ const loadItems = function(slots, objs) {
     }
 }
 
-// sjekk et produkt
+let inCart = false;
+let inCartIndex;
+const checkProduct = function(obj, slot) {
+    const nameTxt = slot.querySelector('h2');
+    const img = slot.querySelector('img');
+    const priceTxt = slot.querySelector('.price');
+    const closeBtn = slot.querySelector('.closeBtn');
+
+    let cartProducts = localStorage.getItem('cartProducts');
+    cartProducts = JSON.parse(cartProducts);
+    // console.log(cartProducts);
+
+    for (i = 0; i < cartProducts.length; i++) {
+        const product = cartProducts[i];
+
+        if (product.name === currentObject.name) {
+            inCart = true;
+            inCartIndex = i;
+            addToCartBtn.classList.add('inCartBtn');
+            addToCartBtn.textContent = 'Fjern fra handlekurv';
+        }
+    }
+
+    closeBtn.addEventListener('click', () => {
+        productsDiv.classList.remove('d-none');
+        itemSlots.forEach(itemSlot => {
+            itemSlot.classList.remove('d-none');
+        });
+        popupSlot.classList.add('d-none');
+    });
+
+    nameTxt.textContent = obj.name;
+    img.setAttribute('src', obj.image);
+    priceTxt.textContent = `$ ${obj.price}`;
+}
+
 let currentObject;
+addToCartBtn.addEventListener('click', () => {
+    if (!inCart) {
+        let cartProducts = localStorage.getItem('cartProducts');
+        cartProducts = JSON.parse(cartProducts);
+        if (cartProducts === null) {
+            cartProducts = [];
+        }
+        cartProducts.push(currentObject);
+        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    } else {
+        let cartProducts = localStorage.getItem('cartProducts');
+        cartProducts = JSON.parse(cartProducts);
+
+        cartProducts.splice(inCartIndex, 1);
+        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    }
+    productsDiv.classList.remove('d-none');
+    itemSlots.forEach(itemSlot => {
+        itemSlot.classList.remove('d-none');
+    });
+    popupSlot.classList.add('d-none');
+});
+
+// Filter
 const checkObjects = function(objs, filter) {
     objs.forEach(obj => {
         if (obj.class === filter) {
@@ -83,24 +126,34 @@ const checkObjects = function(objs, filter) {
     });
 }
 
+// Sjekk et produkt
 productsDiv.addEventListener("click", e => {
-    let itemClass = Array.from(e.target.classList);
-    itemClass = itemClass[1];
-    checkObjects(objects, itemClass);
-    console.log(currentObject);
+    if (e.target.id === 'name') {
+        scrollTo(0, 0);
+        productsDiv.classList.add('d-none');
+        itemSlots.forEach(itemSlot => {
+            itemSlot.classList.add('d-none');
+        });
+        popupSlot.classList.remove('d-none');
+        let itemClass = Array.from(e.target.classList);
+        itemClass = itemClass[1];
+        checkObjects(objects, itemClass);
+        checkProduct(currentObject, popupSlot);
+    }
 });
 
+// RUN
 
 // Fetch and load data
 let objects = [];
 getFile('../products.json')
     .then(data => {
-        const objs = data.splice(0, 8);
-        createSlots(objs.length, productsDiv);
+        createSlots(8, productsDiv);
         const productSlots = productsDiv.children;
-        randomiseIds(objs);
-        loadItems(productSlots, objs);
-        objects = objs;
+        sortBySales(data);
+        data.splice(8, data.length);
+        loadItems(productSlots, data);
+        objects = data; // Need this for checking a product
     })
     .catch(err => console.warn('Rejected:', err.message));
 //

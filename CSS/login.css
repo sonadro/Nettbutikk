@@ -34,12 +34,20 @@ div.login label {
 
 .mailInput {
     width: 250px;
+    position: relative;
+    left: 70px;
 }
 
 .passord {
     width: 250px;
     position: relative;
-    left: 32px;
+    left: 100px;
+}
+
+.repeatPw {
+    width: 250px;
+    position: relative;
+    left:45px
 }
 
 .mailErr {

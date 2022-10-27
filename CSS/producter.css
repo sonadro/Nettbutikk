@@ -1,3 +1,50 @@
-.products {
+.popupProduct {
+    background-color: #ddd;
+    width: 50%;
+    max-width: 600px;
+    position: relative;
     margin: 0 auto;
+    text-align: center;
+    border: 4px solid black;
+    border-radius: 16px;
+    top: 25px;
+}
+
+.popupProduct img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+}
+
+.closeBtn {
+    border: 6px solid red;
+    border-radius: 8px;
+    width: 2ch;
+    background-color: red;
+    font-weight: bold;
+    position: relative;
+    left: 535px;
+    bottom: 75px;
+}
+
+.closeBtn:hover {
+    border-color: black;
+}
+
+.addToCart {
+    font-size: 18px;
+    font-weight: bold;
+    border: 6px solid #00ee00;
+    background-color: #00ee00;
+    border-radius: 16px;
+    padding: 12px;
+}
+
+.inCartBtn {
+    background-color: red !important;
+    border-color: red;
+}
+
+.addToCart:hover {
+    border-color: black;
 }

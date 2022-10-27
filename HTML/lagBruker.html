@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Logg Inn - Sondres Nettbutikk</title>
+    <title>Lag Bruker - Sondres Nettbutikk</title>
 
     <link rel="stylesheet" href="../CSS/reset.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/login.css">
-    <script src="../JS/login.js" defer></script>
+    <script src="../JS/nyBruker.js" defer></script>
 
 </head>
 <body>
@@ -47,17 +47,24 @@
                 <label for="passord">Passord:</label>
                 <input class="passord" type="text" placeholder="Passord" name="passord">
             </div><br>
-            <button class="submit d-none">Logg inn</button>
+
+            <div class="inputField">
+                <label for="repeatPw">Gjenta passord:</label>
+                <input class="repeatPw" type="text" placeholder="Gjenta passord" name="repeatPw">
+            </div><br>
+
+            <button class="submit d-none">Lag bruker</button>
             <div class="errorMsg">
                 <h3>Kriterier for passord:</h3>
                 <p class="letterErr pwErr">Passordet må inneholde minst én bokstav</p>
                 <p class="numberErr pwErr">Passordet må inneholde minst ett tall</p>
                 <p class="symbolErr pwErr">Passordet må inneholde minst ett symbol</p>
-                <p class="lengthErr pwErr bottomErr">Passordet må inneholde mellom 13 og 50 tegn</p>
+                <p class="lengthErr pwErr">Passordet må inneholde mellom 13 og 50 tegn</p>
+                <p class="matchErr pwErr bottomErr">Begge passordene må være like</p>
             </div>
-            <a href="lagBruker.html" class="newUser">Ny bruker? Lag en her</a>
+            <a href="login.html" class="oldUser">Har du allerede en bruker? Logg inn her</a><br><br>
         </form>
-    </div>
+    </div><br><br><br>
 
 </body>
 </html>

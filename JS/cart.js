@@ -135,6 +135,7 @@ addToCartBtn.addEventListener('click', () => {
         itemSlot.classList.remove('d-none');
     });
     popupSlot.classList.add('d-none');
+    window.location.reload();
 });
 
 // Filter
@@ -147,6 +148,7 @@ const checkObjects = function(objs, filter) {
 }
 
 // Sjekk et produkt
+let objects = [];
 productsDiv.addEventListener("click", e => {
     if (e.target.id === 'name') {
         scrollTo(0, 0);
@@ -162,17 +164,10 @@ productsDiv.addEventListener("click", e => {
     }
 });
 
-// RUN
+let cartProducts = localStorage.getItem('cartProducts');
+cartProducts = JSON.parse(cartProducts);
+objects = cartProducts;
 
-// Fetch and load data
-let objects = [];
-getFile('../products.json')
-    .then(data => {
-        createSlots(data.length, productsDiv);
-        const productSlots = productsDiv.children;
-        randomiseIds(data);
-        loadItems(productSlots, data);
-        objects = data; // Need this for checking a product
-    })
-    .catch(err => console.warn('Rejected:', err.message));
-//
+createSlots(cartProducts.length, productsDiv);
+const productSlots = productsDiv.children;
+loadItems(productSlots, cartProducts);
