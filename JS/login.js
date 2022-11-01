@@ -3,6 +3,8 @@ const mailInput = document.querySelector('.mailInput');
 const submitButton = document.querySelector('.submit');
 
 const mailMsg = document.querySelector('.mailErr');
+const invalidUserMsg = document.querySelector('.invalidUserName');
+const invalidPwMsg = document.querySelector('.invalidPassword');
 const letterMsg = document.querySelector('.letterErr');
 const numberMsg = document.querySelector('.numberErr');
 const symbolMsg = document.querySelector('.symbolErr');
@@ -16,8 +18,48 @@ const lengthPattern = /^.{13,50}$/;
 const scriptPattern = /<script.*<\/script>/mi;
 const dbPattern = /^.*database.*$/mi;
 
+const login = function(name, pw) {
+    db.collection('users').get().then((snapshot) => {
+        // When we have the data
+        let userFound = false;
+        snapshot.docs.forEach(doc => {
+            if (!userFound) {
+                const currUser = doc.data();
+                if (name === currUser.mail) {
+                    invalidUserMsg.classList.add('d-none');
+                    userFound = true;
+                    if (pw === currUser.password) {
+                        // correct password, user logged in
+                        invalidPwMsg.classList.add('d-none');
+                        if (currUser.userType === 'administrator') {
+                            localStorage.setItem('userName', JSON.stringify(name));
+                            localStorage.setItem('loggedIn', JSON.stringify(true));
+                            window.location.replace('http://127.0.0.1:5500/HTML/admin.html');
+                        } else {
+                            localStorage.setItem('userName', JSON.stringify(name));
+                            localStorage.setItem('loggedIn', JSON.stringify(true));
+                            window.location.replace('http://127.0.0.1:5500/index.html');
+                        }
+                    } else {
+                        // wrong password
+                        invalidPwMsg.classList.remove('d-none');
+                    }
+                }
+            }
+        });
+        if (!userFound) {
+            // user was not found
+            invalidUserMsg.classList.remove('d-none');
+        }
+    }).catch(err => {
+        console.error(err);
+    });
+}
+
+// login("sondreAdmin", ";xN0a=`O^Xx'ec&Tl!CL7F#m|YGJT&kO/0I2:6;$fL|`vzw*+.");
+
 validEmail = false;
-mailInput.addEventListener('keyup', () => {
+mailInput.addEventListener('input', () => {
     if (mailPattern.test(mailInput.value)) {
         mailMsg.textContent = 'Gyldig mail';
         mailMsg.classList.remove('pwErr');
@@ -41,7 +83,7 @@ mailInput.addEventListener('keyup', () => {
 });
 
 let validPw = false;
-passordInput.addEventListener('keyup', () => {
+passordInput.addEventListener('input', () => {
     validPw = true;
 
     // Password has letter
@@ -100,7 +142,7 @@ loginForm.addEventListener('submit', e => {
     e.preventDefault();
 
     if (validPw && !scriptPattern.test(passordInput.value) && !dbPattern.test(passordInput.value)) {
-        console.log('YOUR LOGIN IS VALID :D');
+        login(mailInput.value, passordInput.value);
     } else {
         console.log('YOUR LOGIN AIN\'T VALID MAN >:C');
     }

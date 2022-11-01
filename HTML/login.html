@@ -29,6 +29,7 @@
         <a href="login.html" class="currentSite">Logg Inn</a>
         <a href="produkter.html">Produkter</a>
         <a href="handlekurv.html">Handlekurv</a>
+        <p class="userName d-non">laster brukernavn</p>
 
     </nav><br><br><br><br><br><br>
 
@@ -41,6 +42,7 @@
                 <label for="mailInput">Mailadresse:</label>
                 <input class="mailInput" type="text" placeholder="eksempel.mail@gmail.com" name="mailInput">
                 <p class="mailErr pwErr">Ugyldig mail</p>
+                <p class="d-none invalidUserName pwErr">Kunne ikke finne brukeren din</p>
             </div><br>
 
             <div class="inputField">
@@ -48,6 +50,7 @@
                 <input class="passord" type="text" placeholder="Passord" name="passord">
             </div><br>
             <button class="submit d-none">Logg inn</button>
+            <p class="d-none pwErr invalidPassword">Sjekk at du har skrevet passordet riktig.</p>
             <div class="errorMsg">
                 <h3>Kriterier for passord:</h3>
                 <p class="letterErr pwErr">Passordet må inneholde minst én bokstav</p>
@@ -55,9 +58,25 @@
                 <p class="symbolErr pwErr">Passordet må inneholde minst ett symbol</p>
                 <p class="lengthErr pwErr bottomErr">Passordet må inneholde mellom 13 og 50 tegn</p>
             </div>
-            <a href="lagBruker.html" class="newUser">Ny bruker? Lag en her</a>
+            <a href="lagBruker.html" class="newUser">Ny bruker? Lag en her</a><br><br>
         </form>
-    </div>
+    </div><br><br><br>
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyB3Wnnl-ENv0dGBLXTARFtpC7TJQk7403M",
+          authDomain: "nettbutikk-b8a72.firebaseapp.com",
+          databaseURL: "https://nettbutikk-b8a72.firebaseio.com",
+          projectId: "nettbutikk-b8a72",
+          storageBucket: "nettbutikk-b8a72.appspot.com",
+          messagingSenderId: "1051366519671"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();  
+      </script>
 </body>
 </html>

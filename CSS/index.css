@@ -130,7 +130,7 @@ nav {
     margin-left: 0;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 11;
     border-bottom: 4px solid black;
 }
 
@@ -148,6 +148,20 @@ nav a {
     font-size: 1.1rem;
     cursor: pointer;
     text-decoration: underline;
+    color: black;
+    font-family: 'MavenPro', Fallback, sans-serif;
+}
+
+nav p {
+    position: relative;
+    left: 900px;
+    display: inline-block;
+    padding: 6px;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+    font-weight: bolder;
+    font-size: 1.1rem;
     color: black;
     font-family: 'MavenPro', Fallback, sans-serif;
 }
