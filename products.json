@@ -153,12 +153,12 @@
         "id": 0
     },
 
-    {"name": "Mohawk",
-        "class": "mohawk",
-        "image": "../IMG/mohawk.png",
-        "altText": "Bilde av mohawk",
+    {"name": "Top Hat",
+        "class": "top-hat",
+        "image": "../IMG/top-hat.png",
+        "altText": "Bilde av Top Hat",
         "category": "Topper",
-        "description": "Mohawk er en topper i Rocket League",
+        "description": "Top Hat er en topper i Rocket League",
         "price": 1000,
         "sales": 0,
         "id": 0
@@ -208,12 +208,12 @@
         "id": 0
     },
 
-    {"name": "Burnout",
-        "class": "burnout",
-        "image": "../IMG/burnout.png",
-        "altText": "Bilde av Burnout",
+    {"name": "Battle-Stars",
+        "class": "battle-stars",
+        "image": "../IMG/battle-stars.png",
+        "altText": "Bilde av Battle-Stars",
         "category": "Boost",
-        "description": "Burnout er en boost i Rocket League",
+        "description": "Battle-Stars er en boost i Rocket League",
         "price": 550,
         "sales": 0,
         "id": 0
@@ -252,12 +252,12 @@
         "id": 0
     },
 
-    {"name": "Nitrous",
-        "class": "nitrous",
-        "image": "../IMG/nitrous.png",
-        "altText": "Bilde av Nitrous",
+    {"name": "Nuts & Bolts",
+        "class": "nuts-bolts",
+        "image": "../IMG/nuts-bolts.png",
+        "altText": "Bilde av Nuts & Bolts",
         "category": "Boost",
-        "description": "Nitrous er en boost i Rocket League",
+        "description": "Nuts & Bolts er en boost i Rocket League",
         "price": 475,
         "sales": 0,
         "id": 0

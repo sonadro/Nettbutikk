@@ -104,6 +104,10 @@ div.itemSlot {
     top: 0;
 }
 
+img.faded-cosmos {
+    height: 0.9rem;
+}
+
 div.itemSlot .image {
     height: 150px;
     border-radius: 16px;
