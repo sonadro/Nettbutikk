@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/producter.css">
+    <script src="JS/loggedIn.js" defer></script>
     <script src="JS/index.js" defer></script>
 
 </head>
@@ -27,9 +28,11 @@
     <nav>
 
         <a href="index.html" class="currentSite">Hjem</a>
-        <a href="HTML/login.html">Logg Inn</a>
+        <a href="HTML/login.html" class="logInBtn">Logg Inn</a>
         <a href="HTML/produkter.html">Produkter</a>
         <a href="HTML/handlekurv.html">Handlekurv</a>
+        <p class="userName d-none">laster brukernavn</p>
+        <button class="logOutBtn d-none">Logg Ut</button>
 
     </nav><br><br><br><br><br>
 
@@ -41,11 +44,30 @@
     </div>
 
     <div class="popupProduct d-none">
-        <h2 class="popupName">Laster produktnavn</h2><p class="closeBtn">X</p><br>
-        <img src="../IMG/placeholder.jpg" alt="Placeholder bilde">
+        <h2 class="popupName">Laster produktnavn</h2><p class="closeBtn">X</p>
+        <p class="category">Laster kategori</p>
+        <img src="../IMG/placeholder.jpg" alt="Placeholder bilde" class="image">
+        <p class="description">Laster beskrivelse</p>
         <p class="price">Laster pris</p>
-        <button class="addToCart">Legg til handlekurv</button><br><br>
+        <img src="../IMG/credits.png" alt="Bilde av credits" class="popupCred">
+        <button class="addToCart">Legg til handlekurv</button>
     </div><br><br><br>
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB3Wnnl-ENv0dGBLXTARFtpC7TJQk7403M",
+            authDomain: "nettbutikk-b8a72.firebaseapp.com",
+            databaseURL: "https://nettbutikk-b8a72.firebaseio.com",
+            projectId: "nettbutikk-b8a72",
+            storageBucket: "nettbutikk-b8a72.appspot.com",
+            messagingSenderId: "1051366519671"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();  
+    </script>
 </body>
 </html>

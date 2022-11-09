@@ -1,3 +1,9 @@
+/* VARIABLER I CSS????? :O :O :O :O ????!?!??!?!?! */
+:root {
+    --bgCol: #eee;
+    --bg2Col: #ddd;
+}
+
 /* Importere Fonts */
 @font-face { /* Headers */
     font-family: 'Alegreya';
@@ -66,7 +72,7 @@ label, input, p {
 }
 
 body {
-    background-color: #eee;
+    background-color: var(--bgCol);
     z-index: 1;
 }
 
@@ -87,7 +93,7 @@ div.products {
 
 div.itemSlot {
     width: 200px;
-    background-color: #ddd;
+    background-color: var(--bg2Col);
     display: inline-block;
     padding: 10px 50px;
     margin: 25px;
@@ -98,18 +104,14 @@ div.itemSlot {
     top: 0;
 }
 
-.rocket_launcher {
-    max-height: 110px;
-}
-
-div.itemSlot img {
+div.itemSlot .image {
     height: 150px;
     border-radius: 16px;
     padding: 8px;
     cursor: pointer;
 }
 
-div.itemSlot img:hover {
+div.itemSlot .image:hover {
     background-color: white;
 }
 
@@ -123,8 +125,22 @@ div.itemSlot #name:hover {
     font-weight: bold;
 }
 
+.credImg {
+    width: 50px;
+    position: relative;
+    right: 50px;
+    top: 75px;
+}
+
+.popupCred {
+    width: 50px;
+    position: relative;
+    bottom: 65px;
+    left: 50px;
+}
+
 nav {
-    background: #ddd;
+    background: var(--bg2Col);
     padding: 24px;
     width: 100%;
     margin-left: 0;
@@ -154,7 +170,7 @@ nav a {
 
 nav p {
     position: relative;
-    left: 900px;
+    left: 800px;
     display: inline-block;
     padding: 6px;
     border: none;
@@ -166,11 +182,35 @@ nav p {
     font-family: 'MavenPro', Fallback, sans-serif;
 }
 
+nav button {
+    background: var(--bg2Col);
+    border: 4px solid black;
+    position: relative;
+    left: 800px;
+    display: inline-block;
+    padding: 6px;
+    border-radius: 12px;
+    margin: auto;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    color: black;
+    font-family: 'MavenPro', Fallback, sans-serif;
+}
+
+nav button:hover {
+    /*Bakgrunn gradient */
+    background: #00ff00;
+    background: linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
+    background: -moz-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
+    background: -webkit-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00ff00", endColorstr="#00ffff", GradientType=1 );
+}
+
 nav a:hover {
     /*Bakgrunn gradient */
-    background: hsla(120, 100%, 50%, 1);
-    background: linear-gradient(0deg, hsla(120, 100%, 50%, 1) 0%, hsla(180, 100%, 50%, 1) 100%);
-    background: -moz-linear-gradient(0deg, hsla(120, 100%, 50%, 1) 0%, hsla(180, 100%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(0deg, hsla(120, 100%, 50%, 1) 0%, hsla(180, 100%, 50%, 1) 100%);
+    background: #00ff00;
+    background: linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
+    background: -moz-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
+    background: -webkit-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00ff00", endColorstr="#00ffff", GradientType=1 );
 }

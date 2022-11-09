@@ -21,6 +21,7 @@ const createSlots = function(length, div) {
         <div class="itemSlot">
             <p class="name" id="name">Laster navn</p>
             <img src="../IMG/Placeholder.jpg" alt="Laster bilde" class="image">
+            <img src="../IMG/credits.png" alt="Bilde av credits" class="credImg">
             <p class="price">Laster pris</p>
         </div>
         `;
@@ -73,7 +74,7 @@ const loadItems = function(slots, objs) {
         image.classList.add(`${obj.class}`);
         nameTxt.classList.add(`${obj.class}`);
         image.classList.remove("loading");
-        priceTxt.textContent = `$ ${obj.price}`;
+        priceTxt.textContent = `${obj.price}`;
     }
 }
 
@@ -81,8 +82,10 @@ let inCart = false;
 let inCartIndex;
 const checkProduct = function(obj, slot) {
     const nameTxt = slot.querySelector('h2');
+    const category = slot.querySelector('.category');
     const img = slot.querySelector('img');
     const priceTxt = slot.querySelector('.price');
+    const descriptionTxt = slot.querySelector('.description');
     const closeBtn = slot.querySelector('.closeBtn');
 
     let cartProducts = localStorage.getItem('cartProducts');
@@ -109,8 +112,10 @@ const checkProduct = function(obj, slot) {
     });
 
     nameTxt.textContent = obj.name;
+    category.textContent = `Kategori: ${obj.category}`;
     img.setAttribute('src', obj.image);
-    priceTxt.textContent = `$ ${obj.price}`;
+    descriptionTxt.textContent = obj.description;
+    priceTxt.textContent = `${obj.price}`;
 }
 
 let currentObject;

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../CSS/reset.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/producter.css">
+    <script src="../JS/loggedIn.js" defer></script>
     <script src="../JS/cart.js" defer></script>
 
 </head>
@@ -25,9 +26,11 @@
     <nav>
 
         <a href="../index.html">Hjem</a>
-        <a href="login.html">Logg Inn</a>
+        <a href="login.html" class="logInBtn">Logg Inn</a>
         <a href="produkter.html">Produkter</a>
         <a href="handlekurv.html" class="currentSite">Handlekurv</a>
+        <p class="userName d-none">laster brukernavn</p>
+        <button class="logOutBtn d-none">Logg Ut</button>
 
     </nav><br><br><br><br><br>
 
@@ -36,10 +39,13 @@
     </div>
 
     <div class="popupProduct d-none">
-        <h2 class="popupName">Laster produktnavn</h2><p class="closeBtn">X</p><br>
-        <img src="../IMG/placeholder.jpg" alt="Placeholder bilde">
+        <h2 class="popupName">Laster produktnavn</h2><p class="closeBtn">X</p>
+        <p class="category">Laster kategori</p>
+        <img src="../IMG/placeholder.jpg" alt="Placeholder bilde" class="image">
+        <p class="description">Laster beskrivelse</p>
         <p class="price">Laster pris</p>
-        <button class="addToCart">Legg til handlekurv</button><br><br>
+        <img src="../IMG/credits.png" alt="Bilde av credits" class="popupCred">
+        <button class="addToCart">Legg til handlekurv</button>
     </div><br><br><br>
 
 </body>

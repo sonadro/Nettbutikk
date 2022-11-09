@@ -18,6 +18,7 @@ const lengthPattern = /^.{13,50}$/;
 const scriptPattern = /<script.*<\/script>/mi;
 const dbPattern = /^.*database.*$/mi;
 
+let userData;
 const login = function(name, pw) {
     db.collection('users').get().then((snapshot) => {
         // When we have the data
@@ -25,6 +26,7 @@ const login = function(name, pw) {
         snapshot.docs.forEach(doc => {
             if (!userFound) {
                 const currUser = doc.data();
+                userData = currUser;
                 if (name === currUser.mail) {
                     invalidUserMsg.classList.add('d-none');
                     userFound = true;

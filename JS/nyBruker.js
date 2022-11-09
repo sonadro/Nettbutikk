@@ -4,6 +4,7 @@ const mailInput = document.querySelector('.mailInput');
 const submitButton = document.querySelector('.submit');
 
 const mailMsg = document.querySelector('.mailErr');
+const duplicateMsg = document.querySelector('.duplicate');
 const letterMsg = document.querySelector('.letterErr');
 const numberMsg = document.querySelector('.numberErr');
 const symbolMsg = document.querySelector('.symbolErr');
@@ -17,6 +18,26 @@ const symbolPattern = /[ !'#¤%&/()=?`@£$€{},.;:_'*^¨~|§\\-]/;
 const lengthPattern = /^.{13,50}$/;
 const scriptPattern = /<script.*<\/script>/mi;
 const dbPattern = /^.*database.*$/mi;
+
+let userData;
+const createUser = function(name, pw) {
+    const now = new Date();
+    
+    const newUser = {
+        mail: mailInput.value,
+        password: passordInput.value,
+        userName: mailInput.value.slice(0, mailInput.value.indexOf('@')),
+        userType: 'user',
+        userTypeNum: 1,
+        createdAt: firebase.firestore.Timestamp.fromDate(now)
+    }
+
+    db.collection('users').add(newUser).then(() => {
+        console.log('User created');
+    }).catch(err => {
+        console.error(err);
+    });
+}
 
 validEmail = false;
 mailInput.addEventListener('keyup', () => {
@@ -32,6 +53,24 @@ mailInput.addEventListener('keyup', () => {
         mailMsg.classList.remove('pwValid');
         validEmail = false;
     }
+
+    db.collection('users').get().then(snapshot => {
+        let userFound = false;
+        snapshot.docs.forEach(doc => {
+            const currUser = doc.data();
+            if (currUser.mail === mailInput.value) {
+                duplicateMsg.classList.remove('d-none');
+                userFound = true;
+                validEmail = false;
+            }
+        });
+        if (!userFound) {
+            duplicateMsg.classList.add('d-none');
+            validEmail = true;
+        }
+    }).catch(err => {
+        console.error(err);
+    });
 
     // Show submit button
     if (validEmail && validPw && !scriptPattern.test(passordInput.value) && !dbPattern.test(passordInput.value) && passordInput.value === repeatInput.value) {
@@ -175,8 +214,9 @@ const loginForm = document.querySelector('.loginForm');
 loginForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    if (validPw && !scriptPattern.test(passordInput.value) && !dbPattern.test(passordInput.value)) {
+    if (validPw && validEmail && !scriptPattern.test(passordInput.value) && !dbPattern.test(passordInput.value)) {
         console.log('YOUR LOGIN IS VALID :D');
+        createUser(mailInput.value, passordInput.value);
     } else {
         console.log('YOUR LOGIN AIN\'T VALID MAN >:C');
     }

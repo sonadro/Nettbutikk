@@ -21,6 +21,7 @@ const createSlots = function(length, div) {
         <div class="itemSlot">
             <p class="name" id="name">Laster navn</p>
             <img src="../IMG/Placeholder.jpg" alt="Laster bilde" class="image">
+            <img src="../IMG/credits.png" alt="Bilde av credits" class="credImg">
             <p class="price">Laster pris</p>
         </div>
         `;
@@ -53,7 +54,7 @@ const loadItems = function(slots, objs) {
         image.classList.add(`${obj.class}`);
         nameTxt.classList.add(`${obj.class}`);
         image.classList.remove("loading");
-        priceTxt.textContent = `$ ${obj.price}`;
+        priceTxt.textContent = `${obj.price}`;
     }
 }
 
@@ -90,7 +91,7 @@ const checkProduct = function(obj, slot) {
 
     nameTxt.textContent = obj.name;
     img.setAttribute('src', obj.image);
-    priceTxt.textContent = `$ ${obj.price}`;
+    priceTxt.textContent = `${obj.price}`;
 }
 
 let currentObject;
@@ -146,14 +147,13 @@ productsDiv.addEventListener("click", e => {
 
 // Fetch and load data
 let objects = [];
-getFile('../products.json')
-    .then(data => {
-        createSlots(8, productsDiv);
-        const productSlots = productsDiv.children;
-        sortBySales(data);
-        data.splice(8, data.length);
-        loadItems(productSlots, data);
-        objects = data; // Need this for checking a product
-    })
-    .catch(err => console.warn('Rejected:', err.message));
-//
+db.collection('products').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        objects.push(doc.data());
+    });
+    createSlots(8, productsDiv);
+    const productSlots = productsDiv.children;
+    sortBySales(objects);
+    objects.splice(8, objects.length);
+    loadItems(productSlots, objects);
+}).catch(err => console.error(err));
