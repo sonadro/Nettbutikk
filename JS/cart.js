@@ -1,19 +1,10 @@
+const db = firebase.firestore();
 const productsDiv = document.querySelector('.products');
 const popupSlot = document.querySelector('.popupProduct');
 const addToCartBtn = document.querySelector('.addToCart');
+const purchaseButton = document.querySelector('.purchaseBtn');
 let itemSlots;
-
-const getFile = async (resource) => {
-    const response = await fetch(resource);
-
-    if (response.status !== 200) {
-        throw new Error('Cannot fetch the data, error code', response.status);
-    }
-
-    const data = await response.json();
-
-    return data;
-}
+let totalPrice = 0;
 
 const createSlots = function(length, div) {
     for (i = 0; i < length; i++) {
@@ -29,38 +20,16 @@ const createSlots = function(length, div) {
     itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
 }
 
-// Randomise IDS
-const randomiseIds = function(objects) {
-    // Generates array of ids
-    const generateIDs = function() {
-        let arr = [];
-        for (i = 1; i < objects.length + 1; i++) {
-            arr.push(i);
-        }
-        return arr;
-    }
-
-    // Assigns random ids to objects
-    const assignIDs = function(objs) {
-        let ids = generateIDs();
-        objs.forEach(obj => {
-            const rNum = Math.floor(Math.random() * ids.length);
-            obj.id = ids[rNum];
-            ids.splice(rNum, 1);
-        });
-    }
-    assignIDs(objects);
-
-    // Re-sorts the objects, so they can be loaded in the new order
-    objects.sort((a, b) => a.id - b.id);
-}
-
 // Loads each object's properties
 const loadItems = function(slots, objs) {
     for (i = 0; i < objs.length; i++) {
         // define objects & slots
         const slot = slots[i];
         const obj = objs[i];
+
+        // increment total price
+        totalPrice += obj.price;
+        purchaseButton.textContent = `Fullfør Kjøp: ${totalPrice} Credits`;
 
         // define properties
         const nameTxt = slot.querySelector("#name");
@@ -105,6 +74,7 @@ const checkProduct = function(obj, slot) {
 
     closeBtn.addEventListener('click', () => {
         productsDiv.classList.remove('d-none');
+        purchaseButton.classList.remove('d-none');
         itemSlots.forEach(itemSlot => {
             itemSlot.classList.remove('d-none');
         });
@@ -118,6 +88,12 @@ const checkProduct = function(obj, slot) {
     priceTxt.textContent = `${obj.price}`;
 }
 
+// Fullfør kjøp
+purchaseButton.addEventListener('click', () => {
+    console.log('clicked!');
+});
+
+// Sjekk et produt
 let currentObject;
 addToCartBtn.addEventListener('click', () => {
     if (!inCart) {
@@ -136,6 +112,7 @@ addToCartBtn.addEventListener('click', () => {
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
     }
     productsDiv.classList.remove('d-none');
+    
     itemSlots.forEach(itemSlot => {
         itemSlot.classList.remove('d-none');
     });
@@ -158,6 +135,7 @@ productsDiv.addEventListener("click", e => {
     if (e.target.id === 'name') {
         scrollTo(0, 0);
         productsDiv.classList.add('d-none');
+        purchaseButton.classList.add('d-none');
         itemSlots.forEach(itemSlot => {
             itemSlot.classList.add('d-none');
         });

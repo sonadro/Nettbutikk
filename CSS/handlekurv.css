@@ -1,0 +1,16 @@
+.purchaseBtn {
+    background: #00ee00;
+    padding: 10px;
+    border: 4px solid #00ee00;
+    border-radius: 8px;
+    width: 25ch;
+    font-weight: bold;
+}
+
+.purchaseBtn:hover {
+    border: 4px solid black;
+}
+
+.purchase {
+    text-align: center;
+}
