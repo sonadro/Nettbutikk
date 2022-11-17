@@ -26,7 +26,6 @@ const createSlots = function(length, div) {
         </div>
         `;
     }
-    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
 }
 
 // Sort by sales
@@ -62,13 +61,13 @@ let inCart = false;
 let inCartIndex;
 const checkProduct = function(obj, slot) {
     const nameTxt = slot.querySelector('h2');
+    const category = slot.querySelector('.category');
     const img = slot.querySelector('img');
     const priceTxt = slot.querySelector('.price');
+    const descriptionTxt = slot.querySelector('.description');
     const closeBtn = slot.querySelector('.closeBtn');
 
-    let cartProducts = localStorage.getItem('cartProducts');
-    cartProducts = JSON.parse(cartProducts);
-    // console.log(cartProducts);
+    let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
 
     for (i = 0; i < cartProducts.length; i++) {
         const product = cartProducts[i];
@@ -90,7 +89,9 @@ const checkProduct = function(obj, slot) {
     });
 
     nameTxt.textContent = obj.name;
+    category.textContent = `Kategori: ${obj.category}`;
     img.setAttribute('src', obj.image);
+    descriptionTxt.textContent = obj.description;
     priceTxt.textContent = `${obj.price}`;
 }
 
@@ -152,8 +153,8 @@ db.collection('products').get().then(snapshot => {
         objects.push(doc.data());
     });
     createSlots(8, productsDiv);
-    const productSlots = productsDiv.children;
+    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
     sortBySales(objects);
     objects.splice(8, objects.length);
-    loadItems(productSlots, objects);
+    loadItems(itemSlots, objects);
 }).catch(err => console.error(err));

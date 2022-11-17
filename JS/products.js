@@ -1,6 +1,8 @@
 const productsDiv = document.querySelector('.products');
 const popupSlot = document.querySelector('.popupProduct');
 const addToCartBtn = document.querySelector('.addToCart');
+const categories = document.querySelector('.categories');
+const searchField = document.querySelector('.search');
 let itemSlots;
 
 const getFile = async (resource) => {
@@ -26,7 +28,6 @@ const createSlots = function(length, div) {
         </div>
         `;
     }
-    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
 }
 
 // Randomise IDS
@@ -56,11 +57,52 @@ const randomiseIds = function(objects) {
 }
 
 // Loads each object's properties
-const loadItems = function(slots, objs) {
+const loadItems = function(objs) {
+    createSlots(objs.length, productsDiv);
+    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
+    randomiseIds(objs);
     for (i = 0; i < objs.length; i++) {
         // define objects & slots
-        const slot = slots[i];
+        const slot = itemSlots[i];
         const obj = objs[i];
+
+        // define properties
+        const nameTxt = slot.querySelector("#name");
+        const image = slot.querySelector("img");
+        const priceTxt = slot.querySelector(".price");
+
+        // update properties
+        nameTxt.textContent = obj.name;
+        image.src = obj.image;
+        image.setAttribute("alt", obj.altText);
+        image.classList.add(`${obj.class}`);
+        nameTxt.classList.add(`${obj.class}`);
+        image.classList.remove("loading");
+        priceTxt.textContent = `${obj.price}`;
+    }
+}
+
+// loads a category of products
+let categoryProducts= [];
+const loadCategory = function(objs, category) {
+    categoryProducts = [];
+    // filter products
+    for (i = 0; i < objs.length; i++) {
+        const obj = objs[i];
+        if (obj.category === category) {
+            categoryProducts.push(obj);
+        }
+    }
+
+    // create slots & randomise ids
+    createSlots(categoryProducts.length, productsDiv);
+    itemSlots = Array.from(document.querySelectorAll('.itemSlot'));
+
+    // load items
+    for (i = 0; i < categoryProducts.length; i++) {
+        // define object & slot
+        const obj = categoryProducts[i];
+        const slot = itemSlots[i];
 
         // define properties
         const nameTxt = slot.querySelector("#name");
@@ -88,13 +130,10 @@ const checkProduct = function(obj, slot) {
     const descriptionTxt = slot.querySelector('.description');
     const closeBtn = slot.querySelector('.closeBtn');
 
-    let cartProducts = localStorage.getItem('cartProducts');
-    cartProducts = JSON.parse(cartProducts);
-    // console.log(cartProducts);
+    let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
 
     for (i = 0; i < cartProducts.length; i++) {
         const product = cartProducts[i];
-
         if (product.name === currentObject.name) {
             inCart = true;
             inCartIndex = i;
@@ -121,11 +160,10 @@ const checkProduct = function(obj, slot) {
 let currentObject;
 addToCartBtn.addEventListener('click', () => {
     if (!inCart) {
-        let cartProducts = localStorage.getItem('cartProducts');
-        cartProducts = JSON.parse(cartProducts);
-        if (cartProducts === null) {
-            cartProducts = [];
+        if (!localStorage.getItem('cartProducts')) {
+            localStorage.setItem('cartProducts', JSON.stringify([]));
         }
+        let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
         cartProducts.push(currentObject);
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
     } else {
@@ -156,8 +194,8 @@ productsDiv.addEventListener("click", e => {
     if (e.target.id === 'name') {
         scrollTo(0, 0);
         productsDiv.classList.add('d-none');
-        itemSlots.forEach(itemSlot => {
-            itemSlot.classList.add('d-none');
+        itemSlots.forEach(productSlot => {
+            productSlot.classList.add('d-none');
         });
         popupSlot.classList.remove('d-none');
         let itemClass = Array.from(e.target.classList);
@@ -167,16 +205,47 @@ productsDiv.addEventListener("click", e => {
     }
 });
 
-// RUN
+// Sjekk en kategori
+categories.addEventListener('click', e => {
+    productsDiv.classList.remove('d-none');
+    itemSlots.forEach(itemSlot => {
+        itemSlot.classList.remove('d-none');
+    });
+    popupSlot.classList.add('d-none');
+    if (e.target.classList[0] === 'alle') {
+        productsDiv.innerHTML = '';
+        loadItems(objects);
+    } else if (e.target.nodeName === 'BUTTON') {
+        productsDiv.innerHTML = '';
+        loadCategory(objects, e.target.classList[0]);
+    }
+});
 
+// Søke på produkter
+let searchedProducts = [];
+searchField.addEventListener('input', () => {
+    searchedProducts = [];
+    const searchInput = searchField.value.trim().toLowerCase();
+    console.log(searchInput, '------------------------------------------');
+    for (i = 0; i < itemSlots.length; i++) {
+        const item = itemSlots[i];
+        const itemName = item.children[0].textContent.toLowerCase();
+        if (itemName.includes(searchInput)) {
+            console.log(true, itemName, item);
+            item.classList.remove('d-none');
+        } else {
+            item.classList.add('d-none');
+        }
+    }
+});
+
+// RUN
+searchField.value = null;
 // Fetch and load data
 let objects = [];
 db.collection('products').get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         objects.push(doc.data());
     });
-    createSlots(objects.length, productsDiv);
-    const productSlots = productsDiv.children;
-    randomiseIds(objects);
-    loadItems(productSlots, objects);
+    loadItems(objects);
 }).catch(err => console.error(err));

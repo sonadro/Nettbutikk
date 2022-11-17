@@ -91,6 +91,10 @@ div.products {
     text-align: center;
 }
 
+.products::selection {
+    background-color: none;
+}
+
 div.itemSlot {
     width: 200px;
     background-color: var(--bg2Col);
@@ -104,10 +108,6 @@ div.itemSlot {
     top: 0;
 }
 
-img.faded-cosmos {
-    height: 0.9rem;
-}
-
 div.itemSlot .image {
     height: 150px;
     border-radius: 16px;
@@ -116,7 +116,7 @@ div.itemSlot .image {
 }
 
 div.itemSlot .image:hover {
-    background-color: white;
+    cursor: default;
 }
 
 div.itemSlot #name:hover {
@@ -187,7 +187,7 @@ nav p {
 }
 
 nav button {
-    background: var(--bg2Col);
+    background-color: white;
     border: 4px solid black;
     position: relative;
     left: 800px;
@@ -217,4 +217,20 @@ nav a:hover {
     background: -moz-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
     background: -webkit-linear-gradient(0deg, #00ff00 0%, #00ffff 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00ff00", endColorstr="#00ffff", GradientType=1 );
+}
+
+footer {
+    background-color: #ddd;
+    position: inherit;
+    border-top: 4px solid black;
+    padding: 10px;
+}
+
+footer p {
+    font-size: 24px;
+}
+
+footer p.info {
+    font-size: 16px;
+    font-weight: bold;
 }
