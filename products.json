@@ -243,7 +243,7 @@
 
     {"name": "Ion",
         "class": "ion",
-        "image": "../IMG/Ion.png",
+        "image": "../IMG/ion.png",
         "altText": "Bilde av ion",
         "category": "Boost",
         "description": "Ion er en boost i Rocket League",
