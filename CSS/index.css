@@ -152,6 +152,7 @@ nav {
     top: 0;
     z-index: 11;
     border-bottom: 4px solid black;
+    width: 100%;
 }
 
 .currentSite {
@@ -201,6 +202,9 @@ nav button {
     font-family: 'MavenPro', Fallback, sans-serif;
 }
 
+.right {
+    float: right;
+}
 nav button:hover {
     /*Bakgrunn gradient */
     background: #00ff00;

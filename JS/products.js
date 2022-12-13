@@ -131,6 +131,9 @@ const checkProduct = function(obj, slot) {
     const closeBtn = slot.querySelector('.closeBtn');
 
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+    if (!cartProducts) {
+        cartProducts = ['testers', 'do not remove'];
+    }
 
     for (i = 0; i < cartProducts.length; i++) {
         const product = cartProducts[i];
