@@ -14,3 +14,12 @@
 .purchase {
     text-align: center;
 }
+
+.tom {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tom h3 {
+    font-size: 26px;
+}

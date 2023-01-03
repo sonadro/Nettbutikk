@@ -132,7 +132,7 @@ const checkProduct = function(obj, slot) {
 
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
     if (!cartProducts) {
-        cartProducts = ['testers', 'do not remove'];
+        cartProducts = [];
     }
 
     for (i = 0; i < cartProducts.length; i++) {

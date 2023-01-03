@@ -3,6 +3,7 @@ const productsDiv = document.querySelector('.products');
 const popupSlot = document.querySelector('.popupProduct');
 const addToCartBtn = document.querySelector('.addToCart');
 const purchaseButton = document.querySelector('.purchaseBtn');
+const emptyDiv = document.querySelector('.tom');
 let itemSlots;
 let totalPrice = 0;
 
@@ -116,6 +117,7 @@ addToCartBtn.addEventListener('click', () => {
     itemSlots.forEach(itemSlot => {
         itemSlot.classList.remove('d-none');
     });
+    
     popupSlot.classList.add('d-none');
     window.location.reload();
 });
@@ -147,8 +149,15 @@ productsDiv.addEventListener("click", e => {
     }
 });
 
+// Display "Denne handlekurven er tom."
 let cartProducts = localStorage.getItem('cartProducts');
-cartProducts = JSON.parse(cartProducts);
+if (cartProducts === null || cartProducts.length < 3) {
+    cartProducts = [];
+    purchaseButton.classList.add('d-none');
+    emptyDiv.classList.remove('d-none');
+} else {
+    cartProducts = JSON.parse(cartProducts);
+}
 objects = cartProducts;
 
 createSlots(cartProducts.length, productsDiv);
